@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" [hidden]="!isLoggedIn">
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item" routerActive="active"><a class="nav-link" routerLink="/home"><b>Home</b> </a></li>
+      <li class="nav-item dropdown" routerActive="active">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b>Parametre</b></a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" routerLink="/home/promos">Promos</a>
+          <a class="dropdown-item" routerLink="/home/referentiel">Référentiels</a>
+          <a class="dropdown-item" routerLink="/home/groupCompetence">Groupe de compétences</a>
+          <a class="dropdown-item" routerLink="/home/competence">Compétences</a>
+          <a class="dropdown-item" routerLink="/home/tags">Groupe de tags</a>
+          <a class="dropdown-item" routerLink="/home/profilSortie">Profil de sortie</a>
+        </div>
+      </li>
+      <!--<li class="nav-item" routerActive="active"><a class="nav-link" routerLink="users">Users</a></li>-->
+
+      <li class="nav-item dropdown" routerActive="active">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b>Users</b></a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" routerLink="/home/listerUsers">Utilisateurs</a>
+          <a class="dropdown-item" routerLink="/home/listerProfil">Profil</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit"   (click)="deconnecter()"  >Deconnexion</button>
+    </form>
+  </div>
+</nav>

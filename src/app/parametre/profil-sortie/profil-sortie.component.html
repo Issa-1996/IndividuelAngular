@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row md-12 mt-5">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th><h1>Liste des Profils de Sortie</h1></th>
+                    <th><a routerLink="#"><i class="fa fa-plus" aria-hidden="true"></i>Ajouter Un profil de sortie</a></th>
+                </tr>
+            </thead>
+            <thead>
+            <tr class="table-primary">
+                <th scope="col">Libelle</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody *ngFor="let listProfilSortie of listProfilSorties">
+            <tr class="table-active">
+                <td>{{listProfilSortie.libelle }}</td>
+                <td><i class="fa fa-trash mr-5" aria-hidden="true"></i><i class="fa fa-wrench" aria-hidden="true"></i></td>
+            </tr>
+            <tr class="table-secondary">
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

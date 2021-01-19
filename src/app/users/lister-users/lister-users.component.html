@@ -1,0 +1,47 @@
+<router-outlet></router-outlet>
+    <div class="row col-md-8 ml-3 mt-5">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th><h1>Liste des Utilisateurs</h1></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><a routerLink="/home/addUsers"><i class="fa fa-plus" aria-hidden="true"></i>Ajouter Un utilisateur</a></th>
+                </tr>
+            </thead>
+            <thead>
+            <tr class="table-primary">
+                <th scope="col">ID</th>
+                <th scope="col">Avatar</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Email</th>
+                <th scope="col">Profil</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody *ngFor="let listUser of listUsers">
+            <tr class="table-active">
+                <td>{{ listUser.id }}</td>
+                <td><img src="data:image/png;base64,{{listUser.avatar }}" alt="Le profil" width="50" height="50"></td>
+                <td>{{ listUser.prenom }}</td>
+                <td>{{ listUser.nom }}</td>
+                <td>{{ listUser.email }}</td>
+                <td>{{ listUser.profil.libelle }}</td>
+                <td><button class="btn btn-danger" (click)="editUser(listUser)" routerLink="/home/listerUsers/modifierUsers" style="margin-left: 20px;"> Edit</button></td>
+            </tr>
+            <tr class="table-secondary">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
