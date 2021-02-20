@@ -3,7 +3,9 @@ export class GroupeCompetence{
     id:number;
     libelle: string;
     description: string;
-    user: User;
     archivage: boolean;
-    competences: number;
+    competences:[{
+        id: number,
+        libelle:string
+    }]
 }

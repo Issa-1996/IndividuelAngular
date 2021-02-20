@@ -1,3 +1,5 @@
+import { EditUserComponent } from './users/edit-user/edit-user.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { MethodeService } from './services/methode.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -18,17 +20,19 @@ import { ListerProilComponent } from './users/lister-proil/lister-proil.componen
 import { AddProilComponent } from './users/add-proil/add-proil.component';
 import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './home/home.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PromosComponent } from './parametre/promos/promos.component';
 import { ProfilSortieComponent } from './parametre/profil-sortie/profil-sortie.component';
 import { GroupCompetenceComponent } from './parametre/group-competence/group-competence.component';
-import { ListGroupCompComponent } from './parametre/group-competence/list-group-comp/list-group-comp.component';
+import { ListGroupCompComponent } from './parametre/list-group-comp/list-group-comp.component';
 import { CompetenceComponent } from './parametre/competence/competence.component';
-import { ListCompetenceComponent } from './parametre/competence/list-competence/list-competence.component';
+import { ListCompetenceComponent } from './parametre/list-competence/list-competence.component';
 import { ReferentielComponent } from './parametre/referentiel/referentiel.component';
-import { ListReferentielComponent } from './parametre/referentiel/list-referentiel/list-referentiel.component';
+import { ListReferentielComponent } from './parametre/list-referentiel/list-referentiel.component';
 import { TagsComponent } from './parametre/tags/tags.component';
-import { ListTagsComponent } from './parametre/tags/list-tags/list-tags.component';
+import { ListTagsComponent } from './parametre/list-tags/list-tags.component';
+import { EditProfilComponent } from './users/edit-profil/edit-profil.component';
+import { EditCompetenceComponent } from './parametre/edit-competence/edit-competence.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 const appRoutes: Routes = [];
 
@@ -54,15 +58,19 @@ const appRoutes: Routes = [];
     ListReferentielComponent,
     TagsComponent,
     ListTagsComponent,
+    EditUserComponent,
+    EditProfilComponent,
+    EditCompetenceComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     AuthService,

@@ -1,0 +1,9 @@
+.pagination{
+    display: inline-block;
+    position: relative;
+    left: 90%;
+}
+a{
+    position: absolute;
+    left: 100%;
+}

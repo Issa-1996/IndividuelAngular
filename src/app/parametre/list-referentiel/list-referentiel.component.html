@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row md-12 mt-5">
+         <div class="col-md-12">
+              <!-- Spied element -->
+              <h1>Liste des Referentiels</h1>
+              <div
+                data-mdb-spy="scroll"
+                data-mdb-target="#scrollspy"
+                data-mdb-offset="0"
+                class="scrollspy-example"
+              >
+        
+        <div class="card ml-2 mb-4" style="width: 18rem ;" *ngFor="let listReferentiel of listReferentiels">
+            <div class="card-body">
+                <h5 class="card-title">{{listReferentiel.libelle}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{listReferentiel.programme}}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{{listReferentiel.libelle}}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{{listReferentiel.libelle}}</h6>
+                <p class="card-text">{{listReferentiel.libelle}}</p>
+                <select name="competence" id="competence" class="form-control">
+                    <option *ngFor="let grpCom of listReferentiel.groupeDeCompetences" value="">{{grpCom.libelle}}</option>
+                </select><br>
+                <a href="#" class="btn btn-sm btn-primary float-right">Modifier</a>
+                <a href="#" class="btn btn-sm btn-primary float-left">Modifier</a>
+            </div>
+    </div>
+    <!-- Spied element -->
+  </div>
+</div>
+
+    </div>
+</div>
+<div class="dropdown">
+    <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-mdb-toggle="dropdown" aria-expanded="false">Dropdown link </a>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+    </ul>
+</div>

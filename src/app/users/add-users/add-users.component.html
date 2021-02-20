@@ -13,23 +13,94 @@
         <div class="fadeIn first">
         <img src="https://aathifrupay.com/DesignFiles/img/loginpannel.png" id="icon" alt="User Icon" />
         </div>
-        <form>
-            <input type="text" class="fadeIn second" name="nom" placeholder="Nom">
-            <input type="text"  name="prenom" class="fadeIn third" placeholder="Prenom">
-            <input type="text" class="fadeIn second" name="email" placeholder="Email">
-            <select name="langue" class="form-control col-md-6">
-                <option>Profil</option>
-                <option value="francais">Formateur</option>
-                <option value="anglais">Administrateur</option>
-                <option value="espagnol">CM </option>
-            </select>
-            <input type="file" class="fadeIn second">
-            
-        <input type="submit" class="fadeIn fourth" value="Connexion" >
-        </form>
         <div class="formFooter">
-        <a class="underlineHover" href="#">Forgot Password?</a>
+        <div class="col-md-12 user-container">
+            <form [formGroup]="addForm">
+                    
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="prenom">Prenom</label>
+                            <input type="text" class="form-control" placeholder="Prenom" formControlName="prenom" name="prenom">
+                        </div>
+                        <div class="col">
+                            <label for="nom">Nom</label>
+                            <input type="text" class="form-control" placeholder="Nom" formControlName="nom" name="nom">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="telephone">Telephone</label>
+                            <input type="text" class="form-control" placeholder="Telephone" formControlName="telephone" name="telephone">
+                        </div>
+                        <div class="col">
+                            <label for="adresse">Adresse</label>
+                            <input type="text" class="form-control" placeholder="Adresse" formControlName="adresse" name="adresse">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="genre">Genre</label>
+                            <select name="genre" id="genre" class="form-control" formControlName="genre">
+                                <option value="Masculin">Masculin</option>
+                                <option value="Feminin">Feminin</option>
+                                <option value="Autre">Autre</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="profil">Profil</label>
+                            <select name="profil" id="profil" class="form-control" formControlName="profil">
+                                <option value="Apprenant">Apprenant</option>
+                                <option value="Formateur">Formateur</option>
+                                <option value="Admin">Admin</option>
+                                <option value="CM">CM</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="telephone">Avatar</label>
+                            <input type="file" class="form-control" (change)="onUploadAvatar($event)" placeholder="avatar" formControlName="avatar" name="avatar">
+                        </div>
+                        <div class="col">
+                            <label for="role">Role</label>
+                            <select name="role" id="role" class="form-control" formControlName="role">
+                                <option value="Apprenant">Apprenant</option>
+                                <option value="Formateur">Formateur</option>
+                                <option value="User">User</option>
+                                <option value="CM">CM</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" placeholder="email" formControlName="email" name="email">
+                        </div>
+                        <div class="col">
+                            <label for="password">Password</label>
+                            <input type="text" class="form-control" placeholder="password" formControlName="password" name="password">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" (click)="onSubmit()" class="btn btn-primary btn-lg btn-block">Enregistrer</button>
+              </form>
         </div>
+    </div>
     </div>
     </div>
 </body>

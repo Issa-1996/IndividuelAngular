@@ -1,3 +1,4 @@
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
+
 
   public email = '';
   public password = '';
@@ -29,6 +31,5 @@ export class AuthComponent implements OnInit {
         this.router.navigate(['/home']);
       }
     )
-  }
-  
+  }  
 }

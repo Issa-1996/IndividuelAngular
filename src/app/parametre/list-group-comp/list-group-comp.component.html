@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row md-12 mt-5">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th><h1>Liste des Groupe de Competences</h1></th>
+                    <th></th>
+                    <th></th>
+                    <th><a routerLink="/home/groupCompetence"><i class="fa fa-plus" aria-hidden="true"></i>Ajouter un groupe de competence</a></th>
+                </tr>
+            </thead>
+            <thead>
+            <tr class="table-primary">
+                <th scope="col">id</th>
+                <th scope="col">Libelle</th>
+                <th scope="col">Description</th>
+                <th scope="col">Competence</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody *ngFor="let listUser of listGoupCs">
+            <tr class="table-active">
+                <td>{{ listUser.id }}</td>
+                <td>{{ listUser.libelle }}</td>
+                <td>{{ listUser.description }}</td>
+                <td>{{ listUser.competence }}</td>
+                <td><i class="fa fa-trash mr-3" aria-hidden="true"></i><i class="fa fa-wrench" aria-hidden="true"></i></td>
+            </tr>
+            <tr class="table-secondary">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+            <button class="btn btn-success" (click)="readGroupC(pageCurrent - 1)" [disabled]="(pageCurrent==1)">Precedent</button>
+            <button class="btn btn-success" (click)="readGroupC(pageCurrent + 1)" [disabled]="(pageCurrent==totalPage)">Suivant</button>    
+        </table>
+    </div>
+</div>

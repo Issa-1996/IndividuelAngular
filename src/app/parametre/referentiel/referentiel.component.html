@@ -9,22 +9,31 @@
     <div class="wrapper fadeInDown">
     <div class="formContent">
         <h2 class="active">Gestion Des Referentiels</h2>
-        <a routerLink="/listReferentiel"><i class="fa fa-list" aria-hidden="true"></i>Lister Referentiels</a>
+        <a routerLink="/home/listReferentiel"><i class="fa fa-list" aria-hidden="true"></i>Lister Referentiels</a>
         <div class="fadeIn first">
         <img src="https://aathifrupay.com/DesignFiles/img/loginpannel.png" id="icon" alt="User Icon" />
         </div>
-        <form>
-            <input type="text" class="fadeIn second" name="nom" placeholder="Libelle">
-            <textarea name="" id="presentation" cols="30" class="fadeIn third" rows="5">Presentation</textarea>
-            <textarea name="" id="competence" cols="30" class="fadeIn third" rows="5">Competence</textarea>
-            <textarea name="" id="programme" cols="30" class="fadeIn third" rows="5">Programme</textarea>
-            <textarea name="" id="critere" cols="30" class="fadeIn third" rows="5">Critere Evaluation</textarea>
-            <textarea name="" id="admission" cols="30" class="fadeIn third" rows="5">Critere Admission</textarea>
-        <input type="submit" class="fadeIn fourth" value="Soumettre" >
+        <form [formGroup]="form">
+            <input type="text" class="fadeIn second" name="nom" placeholder="Libelle" formControlName="libelle">
+            <textarea name="presentation" id="presentation" cols="30" class="fadeIn third" rows="2" formControlName="presentation" placeholder="Presentation">Presentation</textarea>
+            <textarea name="description" id="description" cols="30" class="fadeIn third" rows="2" formControlName="description" placeholder="description">description</textarea>
+
+            <div class="chips">
+                <ng-multiselect-dropdown
+                [placeholder]="'Selectionner une competences'"
+                formControlName="groupeDeCompetences"
+                [data]="listGrpComps"
+                [settings]="dropdownSettings"
+                (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)"
+                >
+              </ng-multiselect-dropdown>
+            </div>
+            <textarea name="programme" id="programme" cols="30" class="fadeIn third" rows="2" formControlName="programme" placeholder="Programme">Programme</textarea>
+            <textarea name="critereEvaluation" id="critereEvaluation" cols="30" class="fadeIn third" rows="2" formControlName="critereEvaluation" placeholder="Critere Evaluation">Critere Evaluation</textarea>
+            <textarea name="critereAdmission" id="critereAdmission" cols="30" class="fadeIn third" rows="2" formControlName="critereAdmission" placeholder="Critere Admission">Critere Admission</textarea>
+        <input type="submit" class="fadeIn fourth" value="Soumettre" (click)="onSubmit()">
         </form>
-        <div class="formFooter">
-        <a class="underlineHover" href="#">Forgot Password?</a>
-        </div>
     </div>
     </div>
 </body>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper fadeInDown">
+        <div class="formContent">
+            <h2 class="active">Liste des des Competences</h2>
+            <a routerLink="/home/competence"><i class="fa fa-list" aria-hidden="true"></i>Ajouter des Competences</a>
+            <div class="fadeIn first">
+                <img src="https://aathifrupay.com/DesignFiles/img/loginpannel.png" id="icon" alt="User Icon" />
+            </div>
+            <button class="btn btn-success" (click)="getIdCompetence(competences)">update</button>
+            <div class="formFooter">
+                <div class="col-md-12 user-container">
+                    <h2>Listes des Competences</h2>
+                         <div class="form-group">
+                            <div class="col">
+                                
+                                <select name="groupeDeCompetences" [(ngModel)]="groupeDeCompetences" (ngModelChange)="onSubmit($event)" id="groupeDeCompetences" class="form-control" >
+                                    <option *ngFor="let listComp of listComps" value="{{ listComp.id }}"> {{listComp.id}} </option>
+                                </select>                                
+                            </div>
+                        </div>
+                        
+
+
+                       <div class="form-group">
+                            <div class="col">
+                                <select [multiple]="true" name="competences" id="competences" [(ngModel)]="competences" (ngModelChange)="onNiveau($event)" class="form-control">
+                                    <option *ngFor="let ObjetGroupComp of ObjetGroupComps" value="{{ ObjetGroupComp.id }}" > {{ObjetGroupComp.libelle}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="row col-md-12">
+                                    <label for="niveau1" class="col-md-3"><b>Niveau1</b></label>
+                                    <label for="niveau2" class="col-md-5"><b>Niveau2</b> </label>
+                                    <label for="niveau3" class="col-md-4"><b>Niveau3</b> </label>
+                                    <div class="form-group col-md-12">
+                                        <div class="form-row col-md-12">
+                                            <div class="col-md-4" *ngFor="let ObjetCompetenc of ObjetCompetence">
+                                                <label for="groupeAction">Groupe d'actions à réaliser</label>
+                                                <textarea class="form-row col-md-12" placeholder="Groupe d'actions à réaliser" cols="20" rows="5" disabled>{{ObjetCompetenc.groupeAction}}</textarea> 
+                                                <label for="critereEvaluation ">Critères d'évaluation</label>
+                                                <textarea class="form-row col-md-12" placeholder="Groupe d'actions à réaliser" cols="20" rows="5" disabled>{{ObjetCompetenc.critereEvaluation}}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

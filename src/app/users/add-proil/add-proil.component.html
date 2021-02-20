@@ -1,50 +1,37 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-    <div class="container register">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th><h1>Interface d'ajout de Profil</h1></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th><a routerLink="/listerProfil"><i class="fa fa-list" aria-hidden="true"></i></a></th>
-                </tr>
-            </thead>
-        </table>
-        <div class="row">
-            <div class="col-md-3 register-left">
-                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
-                <h3>Sonatel Academie</h3>
-                <p>Coding For Better Life</p>
-            </div>
-            <div class="col-md-9 register-right">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <h3 class="register-heading">Ajouter Un Profil</h3>
-                        <div class="row register-form">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Nom"/>
-                                </div>
-                                <div class="form-group">
-                                    <select name="profil" id="profil" class="form-control">
-                                        <option>Choisi Un Profil</option>
-                                        <option value="Administrateur">Administrateur</option>
-                                        <option value="CM">CM</option>
-                                        <option value="Formateur">Formateur</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <button class="btn btn-primary btn-lg btn-block">Soumettre</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper fadeInDown">
+    <div class="formContent">
+        <h2 class="active">Creation d'un profil</h2>
+        <a routerLink="/home/listerProfil"><i class="fa fa-list" aria-hidden="true"></i>Lister Les Profils</a>
+        <div class="fadeIn first">
+        <img src="https://aathifrupay.com/DesignFiles/img/loginpannel.png" id="icon" alt="User Icon" />
+        </div>
+        <div class="formFooter">
+        <div class="col-md-12 user-container">
+            <form [formGroup]="addForm">
+                    
+                <div class="form-group">
+                    <!--<div class="form-row">-->
+                        <div class="col">
+                            <label for="libelle">Libelle</label>
+                            <input type="text" class="form-control" placeholder="libelle" formControlName="libelle" name="libelle">
                         </div>
-                    </div>
+                    <!--</div>-->
                 </div>
-            </div>
+
+                <button type="button" (click)="onSubmit()" class="btn btn-primary btn-lg btn-block">Enregistrer</button>
+              </form>
         </div>
     </div>
+    </div>
+    </div>
+</body>
+</html>
+        

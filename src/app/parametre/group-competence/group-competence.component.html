@@ -9,15 +9,32 @@
     <div class="wrapper fadeInDown">
     <div class="formContent">
         <h2 class="active">Creation de d'utilisateur</h2>
-        <a routerLink="/listGroupCompetence"><i class="fa fa-list" aria-hidden="true"></i>Lister Les groupes de competences</a>
+        <a routerLink="/home/listGroupCompetence"><i class="fa fa-list" aria-hidden="true"></i>Lister Les groupes de competences</a>
         <div class="fadeIn first">
         <img src="https://aathifrupay.com/DesignFiles/img/loginpannel.png" id="icon" alt="User Icon" />
         </div>
-        <form>
-            <input type="text" class="fadeIn second" name="nom" placeholder="Libelle">
-            <textarea name="" id="description" cols="30" class="fadeIn third" rows="5">Desciption</textarea>
-            <textarea name="" id="competence" cols="30" class="fadeIn third" rows="5">competence</textarea>
-        <input type="submit" class="fadeIn fourth" value="Soumettre" >
+        <form [formGroup]="form">
+            <input type="text" class="fadeIn second" name="libelle" placeholder="Libelle" formControlName="libelle">
+            <textarea name="description" id="description" cols="10" class="fadeIn third" rows="2" formControlName="description">Desciption</textarea>
+
+            <div class="chips">
+            <ng-multiselect-dropdown
+            
+            [placeholder]="'Selectionner une groupe de competences'"
+            formControlName="competences"
+            [data]="objetCompetences"
+            [settings]="dropdownSettings"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+            >
+          </ng-multiselect-dropdown>
+        </div>
+
+
+            <!--<select [multiple]="true" class="form-control col-md-9" name="competence" id="competence" formControlName="competence">
+                <option *ngFor="let objetCompetence of objetCompetences" value="{{objetCompetence.id}}">{{objetCompetence.libelle}}</option>
+            </select>-->
+            <input type="submit" class="fadeIn fourth" value="Soumettre" (click)="onSubmit()" >
         </form>
     </div>
     </div>

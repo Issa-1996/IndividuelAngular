@@ -1,3 +1,5 @@
+import { Tag } from './../modele/tag.model';
+import { Referentiel } from './../modele/referentiel.model';
 import { HttpHeaders } from '@angular/common/http';
 import { Competence } from './../modele/competence.model';
 import { GroupeCompetence } from './../modele/groupCompetence.model';
@@ -13,62 +15,121 @@ import { Injectable } from '@angular/core';
 })
 export class MethodeService {
   baseUrl="http://127.0.0.1:8000/api/admin/users";
+  baseUrlProfil="http://127.0.0.1:8000/api/admin/profils";
+  baseUrlCompetence="http://127.0.0.1:8000/api/admin/competences";
+  baseUrlGroupCompetence="http://127.0.0.1:8000/api/admin/groupe_de_competences";
+  baseUrlReferentiel="http://127.0.0.1:8000/api/admin/referentiels";
+  headers=new HttpHeaders({Accept:'*/*'})
 
   constructor(private httpClient: HttpClient) { }
   /**
    * Methode pour lister les Utilisateurs
    */
-  readAllUsers(): Observable<User[]> {
-    return this.httpClient.get<User[]>('http://127.0.0.1:8000/api/admin/users', {headers: {'Accept': 'application/json'}});
+  readAllUsers(page: any): Observable<User[]> {
+    return this.httpClient.get<User[]>('http://127.0.0.1:8000/api/admin/users?_page='+page, {headers: {'Content-Type': 'application/json'}});
   }
-  getUsers() {
-      return this.httpClient.get<User[]>(this.baseUrl);
-    }
-  /**
-   * Methode pour modifier un utulusateur
-   * @param id 
-   * @param data 
-   */
-  // updateUser(prenom: string): Observable<User[]> {
-    // const body='{"prenom":"'+ prenom +'"}';    
-    // const header=new HttpHeaders({'Content-Type':'application/json'});  
-    // return this.httpClient.put<User[]>('http://127.0.0.1:8000/api/admin/profils/7', body, {headers:header});
-  // }
-
-  updateUser(user: User): Observable<User> {
-    return this.httpClient.put<User>(this.baseUrl + user.id, user);
+  
+  addUser(user: any): Observable<User> {
+    return this.httpClient.post<User>(this.baseUrl, user, {headers:this.headers});
+  }
+  updateUser(userFormData: any): Observable<User> {
+    return this.httpClient.post<User>('http://127.0.0.1:8000/api/admin/users'+'/' +  userFormData.get('id'), userFormData, {headers:this.headers});
   }
   getUserById(id: number): Observable<User> {
-   const idFind =this.readAllUsers[id].find(
-      (idU: User)=>{
-        return idU.id===id;
-      }
-    );
-    return idFind;
+    return this.httpClient.get<User>('http://127.0.0.1:8000/api/admin/users/' + id);
   }
 
 
 
 
   //Les methodes du profil
-  readAllProfils(): Observable<Profil[]> {
-    return this.httpClient.get<Profil[]>('http://127.0.0.1:8000/api/admin/profils', {headers: {'Accept': 'application/json'}});
+  addProfil(profil: any): Observable<Profil> {
+    return this.httpClient.post<Profil>(this.baseUrlProfil, profil, {headers:this.headers});
   }
 
+  updateProfil(profil: any): Observable<Profil> {
+    return this.httpClient.put<Profil>('http://127.0.0.1:8000/api/admin/profils'+'/' + profil.id, profil, {headers:this.headers});
+  }
+
+  readAllProfils(page: any): Observable<Profil[]> {
+    return this.httpClient.get<Profil[]>('http://127.0.0.1:8000/api/admin/profils?_page='+page, {headers: {'Content-Type': 'application/json'}});
+  }
+  getProfilById(id: number): Observable<Profil> {
+    return this.httpClient.get<Profil>('http://127.0.0.1:8000/api/admin/profils/' + id);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
   //Les methodes du profil de sortie
-  readAllProfilSortie(): Observable<ProfilSortie[]> {
-    return this.httpClient.get<ProfilSortie[]>('http://127.0.0.1:8000/api/admin/profil_de_sorties', {headers: {'Accept': 'application/json'}});
+  readAllProfilSortie(page: any): Observable<ProfilSortie[]> {
+    return this.httpClient.get<ProfilSortie[]>('http://127.0.0.1:8000/api/admin/profil_de_sorties?_page='+page, {headers: {'Content-Type': 'application/json'}});
   }
 
 
   //Les methodes de la groupe de competences
-  readAllGroupC(): Observable<GroupeCompetence[]> {
-    return this.httpClient.get<GroupeCompetence[]>('http://127.0.0.1:8000/api/admin/groupe_de_competences', {headers: {'Accept': 'application/json'}});
+  addGoupCompetence(competence: any): Observable<GroupeCompetence> {
+    return this.httpClient.post<GroupeCompetence>(this.baseUrlGroupCompetence, competence, {headers:this.headers});
   }
+
+
+  readAllGroupC(page: any): Observable<GroupeCompetence[]> {
+    return this.httpClient.get<GroupeCompetence[]>('http://127.0.0.1:8000/api/admin/groupe_de_competences?_page='+page, {headers: {'Content-Type': 'application/json'}});
+  }
+  oneGroupCompetence(id: number): Observable<GroupeCompetence[]> {
+    return this.httpClient.get<GroupeCompetence[]>('http://127.0.0.1:8000/api/admin/groupe_de_competences/'+id, {headers: {'Content-Type': 'application/json'}});
+  }
+
 
 
   //Les methodes de competences
-  readAllCompetence(): Observable<Competence[]> {
-    return this.httpClient.get<Competence[]>('http://127.0.0.1:8000/api/admin/competences', {headers: {'Accept': 'application/json'}});
+  oneCompetence(id: number): Observable<Competence[]> {
+    return this.httpClient.get<Competence[]>('http://127.0.0.1:8000/api/admin/competences/'+id, {headers: {'Content-Type': 'application/json'}});
   }
+
+  readAllCompetence(page: any): Observable<Competence[]> {
+    return this.httpClient.get<Competence[]>('http://127.0.0.1:8000/api/admin/competences?_page='+page, {headers: {'Content-Type': 'application/json'}});
+  }
+  addCompetence(competence: any): Observable<Competence> {
+    return this.httpClient.post<Competence>(this.baseUrlCompetence, competence, {headers:this.headers});
+  }
+  getCompetenceById(id: number): Observable<Competence> {
+    return this.httpClient.get<Competence>(this.baseUrlCompetence+'/' + id);
+  }
+  updateCompetence(competence: any): Observable<Competence> {
+    return this.httpClient.put<Competence>(this.baseUrlCompetence+'/' + competence.id, competence, {headers:this.headers});
+  }
+  readCompetence(page: any): Observable<Competence[]> {
+    return this.httpClient.get<Competence[]>('http://127.0.0.1:8000/api/admin/competences?_page='+page, {headers: {'Content-Type': 'application/json'}});
+  }
+
+
+
+
+
+
+
+    //Les methodes du referentiels
+    addReferentiel(referentiel: any): Observable<Referentiel> {
+      return this.httpClient.post<Referentiel>(this.baseUrlReferentiel, referentiel, {headers:this.headers});
+    }
+  
+    readAllReferentiels(page: any): Observable<Referentiel[]> {
+      return this.httpClient.get<Referentiel[]>('http://127.0.0.1:8000/api/admin/referentiels?_page='+page, {headers: {'Content-Type': 'application/json'}});
+    }
+
+    //Les methodes du referentiels
+    readAllTags(page: any): Observable<Tag[]> {
+        return this.httpClient.get<Tag[]>('http://127.0.0.1:8000/api/admin/referentiels?_page='+page, {headers: {'Content-Type': 'application/json'}});
+    }
+    
 }

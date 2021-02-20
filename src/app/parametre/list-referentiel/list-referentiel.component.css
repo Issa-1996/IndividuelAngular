@@ -1,0 +1,6 @@
+/* Styles required only for the example above */
+.scrollspy-example {
+    position: relative;
+    height: 700px;
+    overflow: auto;
+  }

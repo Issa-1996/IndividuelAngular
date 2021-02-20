@@ -10,22 +10,35 @@ import { Component, OnInit } from '@angular/core';
 export class ProfilSortieComponent implements OnInit {
 
   listProfilSorties: ProfilSortie[]=[];
-  constructor(private methodeservice: MethodeService) { }
+  pageCurrent=1;
+  public totalPage=1;
+
+  constructor(private apiService: MethodeService) { }
 
   ngOnInit(): void {
-    this.readProfilSortie();
+    this.readProfilSortie(this.pageCurrent);
   }
-  readProfilSortie() {
+  readProfilSortie(page:any) {
+    this.pageCurrent=page;
+    return this.apiService.readAllProfilSortie(this.pageCurrent)
+        .subscribe(
+          data => {
+            let totalPage=data;
+            totalPage=totalPage['hydra:view']['hydra:last'];
+            if(totalPage){
+              // @ts-ignore
+              totalPage=totalPage[totalPage.length-1];
+              // @ts-ignore
+              this.totalPage=totalPage;
+            }
+            this.listProfilSorties = data;
+            this.listProfilSorties = this.listProfilSorties["hydra:member"] ;
+            console.log(data);
+          },
+          error => {
+            console.log(error);
+          });
+        }
 
-    return this.methodeservice.readAllProfilSortie()
-         .subscribe(
-           data => {
-             this.listProfilSorties = data;
-             console.log(data);
-           },
-           error => {
-             console.log(error);
-           });
-     }
 
 }

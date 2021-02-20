@@ -1,38 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
-  <div class="wrapper fadeInDown">
+    <div class="wrapper fadeInDown">
     <div class="formContent">
-      <h2 class="active">Creation d'une Competencess</h2>
-      <a routerLink="/listcompetence"><i class="fa fa-list" aria-hidden="true"></i>Lister Les competence</a>
-      <div class="fadeIn first">
+        <h2 class="active">Creation de d'utilisateur</h2>
+        <a routerLink="/home/listcompetence"><i class="fa fa-list" aria-hidden="true"></i>Lister Les Competences</a>
+        <div class="fadeIn first">
         <img src="https://aathifrupay.com/DesignFiles/img/loginpannel.png" id="icon" alt="User Icon" />
-      </div>
-      <form>
-          <div class="row">
-            <select name="langue" class="form-control ml-5 col-md-11">
-                <option>Développer le back-end d'une application</option>
-                <option value="francais">Développer le back-end d'une application</option>
-                <option value="anglais">Développer le back-end d'une application</option>
-                <option value="espagnol">Développer le back-end d'une application</option>
-            </select>
-            <div class="col-md-12">
-                <input type="text" class="fadeIn second" name="titre" placeholder="Libelle">
-                <button>Niveau1</button><button>Niveau2</button><button>Niveau3</button>
-                <input type="text" class="fadeIn second" name="lieu" placeholder="Groupe d'actions à realiser">
-                <input type="text" class="fadeIn second" name="lieu" placeholder="Critères d'évaluation">
-                
+        </div>
+        <div class="formFooter">
+        <div class="col-md-12 user-container">
+            <form [formGroup]="form">   
+
+
+              <ng-multiselect-dropdown
+              formControlName="groupeDeCompetences"
+              [placeholder]="'Selectionner une groupe de competences'"
+              [data]="listGrpComps"
+              [settings]="dropdownSettings"
+              (onSelect)="onItemSelect($event)"
+              (onSelectAll)="onSelectAll($event)"
+              >
+            </ng-multiselect-dropdown>
+
+               <!--<div class="form-group">
+
+
+                    <div class="col">
+                        <label for="groupeDeCompetences">Groupe de Competences</label>
+                          <select [multiple]="true" name="groupeDeCompetences" id="groupeDeCompetences" class="form-control" formControlName="groupeDeCompetences">
+                              <option *ngFor="let listGrpComp of listGrpComps" value="{{ listGrpComp.id }}">{{ listGrpComp.libelle }}</option>
+                          </select>
+                    </div>
+                </div>-->
+                <div class="form-group">
+                    <div class="col">
+                        <label for="libelle">Libelle</label>
+                        <input type="text" class="form-control" placeholder="libelle" name="libelle" formControlName="libelle">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                  <ul class="nav nav-tabs">
+                      <li class="active row col-md-5 ml-3" routerActive="active"><a href="#register" data-toggle="tab"><button>Niveau 1</button></a></li>
+                      <li class="active row col-md-5" routerActive="active"><a href="#login" data-toggle="tab"><button>Niveau 2</button></a></li>
+                      <li class="active row" routerActive="active"><a href="#apprenant" data-toggle="tab"><button>Niveau 3</button></a></li>
+                  </ul>  
+                  
+                  <div id="myTabContent" class="tab-content"formGroupName="niveau">
+
+                    <div class="tab-pane fade in active" id="register"  formGroupName="1">
+                      <div class="form-group">
+                        <div class="form-row">
+                          <div class="col">
+                            <label for="groupeAction">Groupe d'actions à réaliser</label>
+                            <textarea class="form-control" placeholder="Groupe d'actions à réaliser" formControlName="groupeAction" cols="10" rows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sunt, optio repudiandae autem corrupti recusandae odio, accusamus eligendi nulla adipisci possimus asperiores quaerat eius a in explicabo facere obcaecati suscipit?</textarea>
+                          </div>
+                          <div class="col">
+                            <label for="critereEvaluation">Critères d'évaluation</label>
+                            <textarea class="form-control" placeholder="Critères d'évaluation" formControlName="critereEvaluation" cols="10" rows="5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos ab exercitationem consectetur esse! Maiores quisquam eaque minima neque nam. Odio maxime harum doloribus at porro, laboriosam neque sed nemo architecto?</textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane fade in active" id="login"  formGroupName="2">
+                      <div class="form-group">
+                        <div class="form-row">
+                          <div class="col">
+                            <label for="groupeAction">Groupe d'actions à réaliser</label>
+                            <textarea class="form-control" placeholder="Groupe d'actions à réaliser" formControlName="groupeAction" cols="10" rows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sunt, optio repudiandae autem corrupti recusandae odio, accusamus eligendi nulla adipisci possimus asperiores quaerat eius a in explicabo facere obcaecati suscipit?</textarea>
+                          </div>
+                          <div class="col">
+                            <label for="critereEvaluation">Critères d'évaluation</label>
+                            <textarea class="form-control" placeholder="Critères d'évaluation" formControlName="critereEvaluation" cols="10" rows="5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos ab exercitationem consectetur esse! Maiores quisquam eaque minima neque nam. Odio maxime harum doloribus at porro, laboriosam neque sed nemo architecto?</textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane fade in active" id="apprenant"  formGroupName="3">
+                      <div class="form-group">
+                        <div class="form-row">
+                          <div class="col">
+                            <label for="groupeAction">Groupe d'actions à réaliser</label>
+                            <textarea class="form-control" placeholder="Groupe d'actions à réaliser" formControlName="groupeAction" cols="10" rows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sunt, optio repudiandae autem corrupti recusandae odio, accusamus eligendi nulla adipisci possimus asperiores quaerat eius a in explicabo facere obcaecati suscipit?</textarea>
+                          </div>
+                          <div class="col">
+                            <label for="critereEvaluation">Critères d'évaluation</label>
+                            <textarea class="form-control" placeholder="Critères d'évaluation" formControlName="critereEvaluation" cols="10" rows="5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos ab exercitationem consectetur esse! Maiores quisquam eaque minima neque nam. Odio maxime harum doloribus at porro, laboriosam neque sed nemo architecto?</textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+
+                </div>
               </div>
-          </div>
-          
-        <input type="submit" class="fadeIn fourth" value="Enregistrer la promotion" >
-      </form>
+                <button type="button" class="btn btn-primary btn-lg btn-block" (click)="onSubmit()">Soumettre</button>
+            </form>
+        </div>
     </div>
-  </div>
+    </div>
+    </div>
 </body>
 </html>
+        
